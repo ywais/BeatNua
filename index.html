@@ -1,1 +1,223 @@
-<h1>Hello!</h1>
+<!DOCTYPE html>
+<html lang="he">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beatכנס נועה</title>
+    <style>
+      /* CSS for smartphone screens */
+      @media (max-width: 767px) {
+        /* Main header */
+        #main-header {
+          background-color: #fcba03;
+          color: #ffffff;
+          font-size: 24px;
+          font-weight: bold;
+          padding: 16px;
+          text-align: center;
+        }
+
+        /* Second header */
+        #second-header {
+          background-color: #ffffff;
+          color: #fcba03;
+          font-size: 18px;
+          font-weight: bold;
+          padding: 8px;
+          text-align: center;
+        }
+
+        /* Input squares */
+        .input-square {
+          border: 2px solid;
+          border-radius: 8px;
+          display: inline-block;
+          height: 48px;
+          margin: 8px;
+          text-align: center;
+          width: 48px;
+        }
+
+        .yellow-outline {
+          border-color: #fcba03;
+        }
+
+        .green-outline {
+          border-color: #00cc00;
+        }
+
+        .red-outline {
+          border-color: #ff0000;
+        }
+
+        /* Form */
+        form {
+          margin: 16px;
+        }
+
+        label {
+          display: block;
+          margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="date"] {
+          border: 2px solid #fcba03;
+          border-radius: 8px;
+          font-size: 18px;
+          padding: 8px;
+          width: 100%;
+        }
+
+        /* Submit button */
+        #submit-button {
+          background-color: #fcba03;
+          border: none;
+          border-radius: 8px;
+          color: #ffffff;
+          font-size: 18px;
+          font-weight: bold;
+          margin: 16px;
+          padding: 12px;
+          width: 100%;
+        }
+
+        #submit-button:hover {
+          background-color: #ffdf80;
+          cursor: pointer;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header id="main-header">Beatכנס נועה</header>
+    <header id="second-header">שיבוץ חדרים</header>
+    <p>אנא הזינו את הקוד שאספתם:</p>
+    <div>
+      <div class="input-square yellow-outline" id="input-square-1"></div>
+      <div class="input-square yellow-outline" id="input-square-2"></div>
+      <div class="input-square green-outline" id="input-square-3"></div>
+      <div class="input-square red-outline" id="input-square-4"></div>
+      <div class="input-square red-outline" id="input-square-5"></div>
+      <div class="input-square red-outline" id="input-square-6"></div>
+    </div>
+    <p>הזינו את פרטיכם:</p>
+    <!-- The form for entering personal details -->
+    <form>
+      <label for="firstName">שם פרטי:</label>
+      <input type="text" id="firstName" name="firstName" required><br><br>
+      <label for="lastName">שם משפחה:</label>
+      <input type="text" id="lastName" name="lastName" required><br><br>
+      <label for="birthday">תאריך לידה:</label>
+      <input type="text" id="birthday" name="birthday" required>
+      <!-- The calendar popup for selecting a date -->
+      <div id="calendarPopup" class="calendarPopup">
+        <div class="calendar">
+          <div class="calendarHeader">
+            <button class="calendarButton" id="prevMonthButton" onclick="prevMonth()">&#10094;</button>
+            <h3 class="calendarMonthYear" id="monthYear"></h3>
+            <button class="calendarButton" id="nextMonthButton" onclick="nextMonth()">&#10095;</button>
+          </div>
+          <div class="calendarWeekdays">
+            <div class="calendarWeekday">א</div>
+            <div class="calendarWeekday">ב</div>
+            <div class="calendarWeekday">ג</div>
+            <div class="calendarWeekday">ד</div>
+            <div class="calendarWeekday">ה</div>
+            <div class="calendarWeekday">ו</div>
+            <div class="calendarWeekday">ש</div>
+          </div>
+          <div class="calendarDays" id="calendarDays"></div>
+        </div>
+      </div>
+    <button type="submit" onclick="submitForm()">כניסה</button>
+
+    </form>
+    <!-- The image to be shown after successful submission -->
+    <img id="successImage" src="https://i.imgur.com/FyuiNnW.jpg" alt="Success!" class="hidden">
+    <!-- The error messages to be shown if submission fails -->
+    <p id="codeErrorMessage" class="hidden">קוד הכניסה שגוי, נסו שנית.</p>
+    <p id="detailsErrorMessage" class="hidden">פרטים אישיים לא נמצאו, אנא בדקו שנית.</p>
+    <!-- The JavaScript code for the app -->
+    <script>
+      // Define the input squares and their corresponding digit colors
+      const inputSquares = [
+        {id: "square1", color: "yellow"},
+        {id: "square2", color: "yellow"},
+        {id: "square3", color: "green"},
+        {id: "square4", color: "red"},
+        {id: "square5", color: "red"},
+        {id: "square6", color: "red"}
+      ];
+
+      // Define the userCodes array
+      const userCodes = ["דק23", "נפ08", "על05", "אפ30", "יו04", "פל28", "רר26", "שז19"];
+
+      // Initialize the date input field with a calendar popup
+      const birthdayInput = document.getElementById("birthday");
+      const calendarPopup = document.getElementById("calendarPopup");
+
+      birthdayInput.addEventListener("click", function() {
+        calendarPopup.classList.toggle("show");
+      });
+
+      // Define the functions for validating user input
+
+      // Validate the code entered by the user
+      function validateCode() {
+        let code = "";
+        for (let i = 1; i <= 6; i++) {
+          code += document.getElementById(`input${i}`).value;
+        }
+        if (code !== "199127") {
+          alert("קוד הכניסה שגוי, נסו שנית");
+          return false;
+        }
+        return true;
+      }
+
+      // Validate user details and create user code
+      function validateDetails() {
+        let firstName = document.getElementById("firstName").value;
+        let lastName = document.getElementById("lastName").value;
+        let birthday = document.getElementById("birthday").value;
+        let day = birthday.split("-")[2];
+        let userCode = `${firstName[0]}${lastName[0]}${day}`;
+        if (!/^[א-ת]+$/.test(firstName) || !/^[א-ת]+$/.test(lastName)) {
+          alert("שם פרטי ושם משפחה חייבים להיות בעברית");
+          return false;
+        }
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(birthday)) {
+          alert("תאריך לידה חייב להיות בפורמט yyyy-mm-dd");
+          return false;
+        }
+        userCodes = [
+          "דק23",
+          "נפ08",
+          "על05",
+          "אפ30",
+          "יו04",
+          "פל28",
+          "רר26",
+          "שז19"
+        ];
+        if (!userCodes.includes(userCode)) {
+          alert("פרטים אישיים לא נמצאו, אנא בדקו שנית");
+          return false;
+        }
+        return true;
+      }
+
+      // Handle form submission
+      function handleSubmit(event) {
+        event.preventDefault();
+        if (validateCode() && validateDetails()) {
+          // if the code is correct and user's details are found, display the image
+          document.getElementById("app").innerHTML = `
+            <img src="https://i.imgur.com/F0mX9xM.jpg" alt="Conference Room">
+          `;
+        }
+      }
+
+      // Attach event listener to form submit button
+      document.getElementById("submit").addEventListener("click", handleSubmit);
