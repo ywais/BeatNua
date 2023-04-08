@@ -7,6 +7,17 @@
     <style>
       /* CSS for smartphone screens */
       @media (max-width: 767px) {
+        html, body {
+          height: 100%;
+        }
+
+        body {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        
         /* Main header */
         #main-header {
           background-color: #fcba03;
@@ -94,12 +105,12 @@
     <header id="second-header">שיבוץ חדרים</header>
     <p>אנא הזינו את הקוד שאספתם:</p>
     <div>
-      <div class="input-square yellow-outline" id="input-square-1"></div>
-      <div class="input-square yellow-outline" id="input-square-2"></div>
-      <div class="input-square green-outline" id="input-square-3"></div>
-      <div class="input-square red-outline" id="input-square-4"></div>
-      <div class="input-square red-outline" id="input-square-5"></div>
-      <div class="input-square red-outline" id="input-square-6"></div>
+      <input class="input-square yellow-outline" id="input-square-1"></input>
+      <input class="input-square yellow-outline" id="input-square-2"></input>
+      <input class="input-square green-outline" id="input-square-3"></input>
+      <input class="input-square red-outline" id="input-square-4"></input>
+      <input class="input-square red-outline" id="input-square-5"></input>
+      <input class="input-square red-outline" id="input-square-6"></input>
     </div>
     <p>הזינו את פרטיכם:</p>
     <!-- The form for entering personal details -->
