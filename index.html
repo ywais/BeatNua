@@ -1,234 +1,301 @@
 <!DOCTYPE html>
 <html lang="he">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Beatכנס נועה</title>
     <style>
-      /* CSS for smartphone screens */
-      @media (max-width: 767px) {
-        html, body {
-          height: 100%;
-        }
+      body {
+        direction: rtl;
+        background-color: #DCD0FF;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+      }
 
-        body {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-        
-        /* Main header */
-        #main-header {
-          background-color: #fcba03;
-          color: #ffffff;
-          font-size: 24px;
-          font-weight: bold;
-          padding: 16px;
-          text-align: center;
-        }
+      .header1 {
+        background-image: linear-gradient(to right, #DCD0FF,#FFC526,#DCD0FF);
+        color: black;
+        text-align: center;
+        padding: 20px;
+      }
 
-        /* Second header */
-        #second-header {
-          background-color: #ffffff;
-          color: #fcba03;
-          font-size: 18px;
-          font-weight: bold;
-          padding: 8px;
-          text-align: center;
-        }
+      .header2 {
+        background-image: linear-gradient(to right, #DCD0FF,#DCD0FF,#FFC526,#DCD0FF,#DCD0FF);
+        color: black;
+        text-align: center;
+        padding: 10px;
+      }
 
-        /* Input squares */
-        .input-square {
-          border: 2px solid;
-          border-radius: 8px;
-          display: inline-block;
-          height: 48px;
-          margin: 8px;
-          text-align: center;
-          width: 48px;
-        }
+      input {
+        outline: none;
+      }
 
-        .yellow-outline {
-          border-color: #fcba03;
-        }
+      #codeSquaresRow {
+        direction: ltr;
+        display: flex;
+        justify-content: space-evenly;
+        max-width: 100%;
+      }
 
-        .green-outline {
-          border-color: #00cc00;
-        }
+      .input-square {
+        display: inline-block;
+        width: 14%;
+        max-width: 40px;
+        margin-right: 1%;
+        margin-left: 1%;
+        border: 5px solid transparent;
+        border-radius: 5px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        color: #5a5a5a;
+        aspect-ratio: 1/1;
+      }
 
-        .red-outline {
-          border-color: #ff0000;
-        }
+      #input-square1,
+      #input-square2 {
+        border-color: #f9f906;
+      }
 
-        /* Form */
-        form {
-          margin: 16px;
-        }
+      #input-square3 {
+        border-color: #00B050;
+      }
 
-        label {
-          display: block;
-          margin-bottom: 8px;
-        }
+      #input-square4,
+      #input-square5,
+      #input-square6 {
+        border-color: red;
+      }
 
-        input[type="text"],
-        input[type="date"] {
-          border: 2px solid #fcba03;
-          border-radius: 8px;
-          font-size: 18px;
-          padding: 8px;
-          width: 100%;
-        }
+      .form {
+        margin: 10px;
+        padding: 10px;
+        border: 2px solid #FFC526;
+        border-radius: 5px;
+        background-color: #ffffff;
+      }
 
-        /* Submit button */
-        #submit-button {
-          background-color: #fcba03;
-          border: none;
-          border-radius: 8px;
-          color: #ffffff;
-          font-size: 18px;
-          font-weight: bold;
-          margin: 16px;
-          padding: 12px;
-          width: 100%;
-        }
+      .form-input {
+        direction: rtl;
+        display: block;
+        width: calc(100% - 10px);
+        margin-top: 10px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+      }
 
-        #submit-button:hover {
-          background-color: #ffdf80;
-          cursor: pointer;
-        }
+      .form-label {
+        font-weight: bold;
+        margin-right: 10px;
+      }
+
+      .form-birthday {
+        direction: ltr;
+        display: flex;
+        justify-content: space-evenly;
+        align-content: center;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+      #birthdayDivider {
+        font-size: 30px;
+        margin-top: 10px;
+        padding: 0 10px;
+      }
+
+      #submitBtn {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-image: linear-gradient(to right, #DCD0FF,#DCD0FF,#FFC526,#DCD0FF,#DCD0FF);
+        color: black;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      /* .error-message {
+        color: red;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+
+      .success-message {
+        text-align: center;
+        margin-top: 10px;
+      } */
+
+      img {
+        max-width: 100%;
+        height: auto;
       }
     </style>
   </head>
   <body>
-    <header id="main-header">Beatכנס נועה</header>
-    <header id="second-header">שיבוץ חדרים</header>
-    <p>אנא הזינו את הקוד שאספתם:</p>
-    <div>
-      <input class="input-square yellow-outline" id="input-square-1"></input>
-      <input class="input-square yellow-outline" id="input-square-2"></input>
-      <input class="input-square green-outline" id="input-square-3"></input>
-      <input class="input-square red-outline" id="input-square-4"></input>
-      <input class="input-square red-outline" id="input-square-5"></input>
-      <input class="input-square red-outline" id="input-square-6"></input>
-    </div>
-    <p>הזינו את פרטיכם:</p>
-    <!-- The form for entering personal details -->
-    <form>
-      <label for="firstName">שם פרטי:</label>
-      <input type="text" id="firstName" name="firstName" required><br><br>
-      <label for="lastName">שם משפחה:</label>
-      <input type="text" id="lastName" name="lastName" required><br><br>
-      <label for="birthday">תאריך לידה:</label>
-      <input type="text" id="birthday" name="birthday" required>
-      <!-- The calendar popup for selecting a date -->
-      <div id="calendarPopup" class="calendarPopup">
-        <div class="calendar">
-          <div class="calendarHeader">
-            <button class="calendarButton" id="prevMonthButton" onclick="prevMonth()">&#10094;</button>
-            <h3 class="calendarMonthYear" id="monthYear"></h3>
-            <button class="calendarButton" id="nextMonthButton" onclick="nextMonth()">&#10095;</button>
-          </div>
-          <div class="calendarWeekdays">
-            <div class="calendarWeekday">א</div>
-            <div class="calendarWeekday">ב</div>
-            <div class="calendarWeekday">ג</div>
-            <div class="calendarWeekday">ד</div>
-            <div class="calendarWeekday">ה</div>
-            <div class="calendarWeekday">ו</div>
-            <div class="calendarWeekday">ש</div>
-          </div>
-          <div class="calendarDays" id="calendarDays"></div>
-        </div>
+    <header>
+      <h1 class="header1">כנס
+        Beatנועה
+      </h1>
+      <h2 class="header2">שיבוץ חדרים</h2>
+    </header>
+    <main id="mainSection">
+      <p>אנא הזינו את הקוד שאספתם:</p>
+      <div id="codeSquaresRow">
+        <input type="text" class="input-square" id="input-square1" maxlength="1" onkeyup="moveToNext(event, 'input-square2')" />
+        <input type="text" class="input-square" id="input-square2" maxlength="1" onkeyup="moveToNext(event, 'input-square3')" />
+        <input type="text" class="input-square" id="input-square3" maxlength="1" onkeyup="moveToNext(event, 'input-square4')" />
+        <input type="text" class="input-square" id="input-square4" maxlength="1" onkeyup="moveToNext(event, 'input-square5')" />
+        <input type="text" class="input-square" id="input-square5" maxlength="1" onkeyup="moveToNext(event, 'input-square6')" />
+        <input type="text" class="input-square" id="input-square6" maxlength="1" onkeyup="moveToNext(event, 'firstName')" />
       </div>
-    <button type="submit" onclick="submitForm()">כניסה</button>
-
-    </form>
-    <!-- The image to be shown after successful submission -->
-    <img id="successImage" src="https://i.imgur.com/FyuiNnW.jpg" alt="Success!" class="hidden">
-    <!-- The error messages to be shown if submission fails -->
-    <p id="codeErrorMessage" class="hidden">קוד הכניסה שגוי, נסו שנית.</p>
-    <p id="detailsErrorMessage" class="hidden">פרטים אישיים לא נמצאו, אנא בדקו שנית.</p>
-    <!-- The JavaScript code for the app -->
+      <p>הזינו את פרטיכם:</p>
+      <form class="form">
+        <label class="form-label" for="firstName">שם פרטי</label>
+        <input type="text" class="form-input" id="firstName" required />
+        <br />
+        <label class="form-label" for="lastName">שם משפחה</label>
+        <input type="text" class="form-input" id="lastName" required />
+        <br />
+        <label class="form-label">תאריך לידה</label>
+        <div class="form-birthday">
+          <!-- <input type="number" class="form-input" id="day" min="1" max="31" placeholder="יום" required /> -->
+          <select class="form-input" id="day" name="day" >
+            <option value=0>יום</option>
+            <option value=1>1</option> <option value=2>2</option> <option value=3>3</option> <option value=4>4</option> <option value=5>5</option>
+            <option value=6>6</option> <option value=7>7</option> <option value=8>8</option> <option value=9>9</option> <option value=10>10</option>
+            <option value=11>11</option> <option value=12>12</option> <option value=13>13</option> <option value=14>14</option> <option value=15>15</option>
+            <option value=16>16</option> <option value=17>17</option> <option value=18>18</option> <option value=19>19</option> <option value=20>20</option>
+            <option value=21>21</option> <option value=22>22</option> <option value=23>23</option> <option value=24>24</option> <option value=25>25</option>
+            <option value=26>26</option> <option value=27>27</option> <option value=28>28</option> <option value=29>29</option> <option value=30>30</option>
+            <option value=31>31</option>
+          </select>          
+          <span id="birthdayDivider">/</span>
+          <!-- <input type="number" class="form-input" id="month" min="1" max="12" placeholder="חודש" required /> -->
+          <select class="form-input" id="month" name="month" >
+            <option value=0>חודש</option>
+            <option value=1>1</option> <option value=2>2</option> <option value=3>3</option> <option value=4>4</option> <option value=5>5</option>
+            <option value=6>6</option> <option value=7>7</option> <option value=8>8</option> <option value=9>9</option> <option value=10>10</option>
+            <option value=11>11</option> <option value=12>12</option>
+          </select>          
+        </div>
+      </form>
+      <button id="submitBtn">כניסה</button>
+    </main>
     <script>
-      // Define the input squares and their corresponding digit colors
-      const inputSquares = [
-        {id: "square1", color: "yellow"},
-        {id: "square2", color: "yellow"},
-        {id: "square3", color: "green"},
-        {id: "square4", color: "red"},
-        {id: "square5", color: "red"},
-        {id: "square6", color: "red"}
-      ];
+      // Get the input fields and submit button
+      const codeInputs = document.querySelectorAll(
+        'input[class="input-square"]'
+      );
+      const firstNameInput = document.getElementById("firstName");
+      const lastNameInput = document.getElementById("lastName");
+      const dayInput = document.getElementById("day");
+      const monthInput = document.getElementById("month");
+      const submitButton = document.getElementById("submitBtn");
+      const mainSec = document.getElementById("mainSection");
+      let userImgCode;
+
+      // Jump to next input after typing a digit
+      function moveToNext(event, nextInputId) {
+        const currentInput = event.target;
+        const currentInputValue = currentInput.value;
+        const maxLength = currentInput.getAttribute("maxlength");
+        
+        if (currentInputValue.length >= maxLength) {
+          const nextInput = document.getElementById(nextInputId);
+          nextInput.focus();
+        }
+      }
 
       // Define the userCodes array
-      const userCodes = ["דק23", "נפ08", "על05", "אפ30", "יו04", "פל28", "רר26", "שז19"];
-
-      // Initialize the date input field with a calendar popup
-      const birthdayInput = document.getElementById("birthday");
-      const calendarPopup = document.getElementById("calendarPopup");
-
-      birthdayInput.addEventListener("click", function() {
-        calendarPopup.classList.toggle("show");
-      });
-
-      // Define the functions for validating user input
-
-      // Validate the code entered by the user
-      function validateCode() {
-        let code = "";
-        for (let i = 1; i <= 6; i++) {
-          code += document.getElementById(`input${i}`).value;
+      const userCodes = [
+        {
+          idCode: "דק23",
+          imgCode: "K5OdT0j"
+        },
+        {
+          idCode: "נפ8",
+          imgCode: "F7iPoJC"
+        },
+        {
+          idCode: "על5",
+          imgCode: "TeVaKF1"
+        },
+        {
+          idCode: "אפ30",
+          imgCode: ""
+        },
+        {
+          idCode: "יו4",
+          imgCode: "bUjuUJg"
+        },
+        {
+          idCode: "פל28",
+          imgCode: "oGrzElV"
+        },
+        {
+          idCode: "רר26",
+          imgCode: "ZIjd4qu"
+        },
+        {
+          idCode: "שז19",
+          imgCode: "ZIjd4qu"
         }
-        if (code !== "199127") {
+      ];
+
+      // Define a function to check the entry code
+      function checkCode() {
+        let entryCode = "";
+        for (let i = 0; i < codeInputs.length; i++) {
+          entryCode += codeInputs[i].value;
+        }
+        if (entryCode !== "199127") {
           alert("קוד הכניסה שגוי, נסו שנית");
           return false;
         }
         return true;
       }
 
-      // Validate user details and create user code
-      function validateDetails() {
-        let firstName = document.getElementById("firstName").value;
-        let lastName = document.getElementById("lastName").value;
-        let birthday = document.getElementById("birthday").value;
-        let day = birthday.split("-")[2];
-        let userCode = `${firstName[0]}${lastName[0]}${day}`;
-        if (!/^[א-ת]+$/.test(firstName) || !/^[א-ת]+$/.test(lastName)) {
-          alert("שם פרטי ושם משפחה חייבים להיות בעברית");
-          return false;
+      // Define a function to check the user code
+      function checkUser() {
+        let userCode =
+          firstNameInput.value.charAt(0) + lastNameInput.value.charAt(0);
+        userCode += dayInput.value;
+        // if (!userCodes.includes(userCode)) {
+        //   alert("פרטים אישיים לא נמצאו, אנא בדקו שנית");
+        //   return false;
+        // }
+        // return true;
+        for (let i = 0; i < userCodes.length; i++) {
+          if (userCodes[i].idCode === userCode) {
+            userImgCode = userCodes[i].imgCode;
+            return true;
+          }
         }
-        if (!/^\d{4}-\d{2}-\d{2}$/.test(birthday)) {
-          alert("תאריך לידה חייב להיות בפורמט yyyy-mm-dd");
-          return false;
-        }
-        userCodes = [
-          "דק23",
-          "נפ08",
-          "על05",
-          "אפ30",
-          "יו04",
-          "פל28",
-          "רר26",
-          "שז19"
-        ];
-        if (!userCodes.includes(userCode)) {
-          alert("פרטים אישיים לא נמצאו, אנא בדקו שנית");
-          return false;
-        }
-        return true;
+        alert("פרטים אישיים לא נמצאו, אנא בדקו שנית");
+        return false;
       }
 
-      // Handle form submission
-      function handleSubmit(event) {
+      // Define a function to submit the form
+      function submitForm(event) {
         event.preventDefault();
-        if (validateCode() && validateDetails()) {
-          // if the code is correct and user's details are found, display the image
-          document.getElementById("app").innerHTML = `
-            <img src="https://i.imgur.com/F0mX9xM.jpg" alt="Conference Room">
-          `;
+        if (checkCode() && checkUser()) {
+          const image = document.createElement("img");
+          image.setAttribute("src", `https://i.imgur.com/${userImgCode}.png`);
+          submitButton.setAttribute("disabled", "disabled");
+          // document.body.appendChild(image);
+          mainSec.insertBefore(image, mainSec.firstChild);
         }
       }
 
-      // Attach event listener to form submit button
-      document.getElementById("submit").addEventListener("click", handleSubmit);
+      // Add an event listener to the submit button
+      submitButton.addEventListener("click", submitForm);
+    </script>
+  </body>
+</html>
